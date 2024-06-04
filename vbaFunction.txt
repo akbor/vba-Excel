@@ -11,3 +11,18 @@
         NUMBERVALUE(INDEX(TEXTSPLIT(FILTER(qs[Sample Name], qs[Sample Name] <> ""), " ", "_", " "),, 7)), 1  ' Sort by repNumber smallest to largest
     )
 )
+
+
+=LET(
+    AssayName, TEXTSPLIT(FILTER(qs[Target Name], qs[Target Name]<>""), "_"),
+    SampleName, FILTER(qs[Sample Name], qs[Target Name]<>""),
+    SampleAssayNameJoined,CONCATENATE(AssayName,"_",SampleName),
+AssaySampleNameSplitted,TEXTSPLIT(TEXTJOIN(";",FALSE,SampleAssayNameJoined),"_",";",FALSE),
+SortedValues,
+SORTBY(AssaySampleNameSplitted,CHOOSECOLS(AssaySampleNameSplitted,1),1,
+CHOOSECOLS(AssaySampleNameSplitted,2),1,
+CHOOSECOLS(AssaySampleNameSplitted,3),1,
+LET(conc,TEXTSPLIT(CHOOSECOLS(AssaySampleNameSplitted,4)," ",,FALSE),conc),-1,
+LET(rep,TEXTAFTER(CHOOSECOLS(AssaySampleNameSplitted,5)," ",),NUMBERVALUE(rep)),1),
+UNIQUE(SortedValues)
+)
