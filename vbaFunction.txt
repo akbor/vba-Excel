@@ -14,3 +14,5 @@ LET(conc,TEXTSPLIT(CHOOSECOLS(AssaySampleNameSplitted,4)," ",,FALSE),conc),-1,
 LET(rep,TEXTAFTER(CHOOSECOLS(AssaySampleNameSplitted,5)," ",),NUMBERVALUE(rep)),1),
 UNIQUE(SortedValues)
 )
+
+=LAMBDA(value,lookAt, IF(value=LEFT(lookAt,LEN(value)),TRUE)) #StartsWith Function
