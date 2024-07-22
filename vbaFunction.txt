@@ -16,3 +16,6 @@ UNIQUE(SortedValues)
 )
 
 =LAMBDA(value,lookAt, IF(value=LEFT(lookAt,LEN(value)),TRUE)) #StartsWith Function
+
+=LAMBDA(arr,value,LET(out,MAP(arr,LAMBDA(rw,IF(rw=value,1,0))), SUM(out))) #COUNTIFCUSTOM function lets you count on an array or range
+
