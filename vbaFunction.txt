@@ -19,3 +19,5 @@ UNIQUE(SortedValues)
 
 =LAMBDA(arr,value,LET(out,MAP(arr,LAMBDA(rw,IF(rw=value,1,0))), SUM(out))) #COUNTIFCUSTOM function lets you count on an array or range
 
+=LAMBDA(cellRef,LET( addr,TEXTSPLIT(CELL("address",cellRef),"$"),letter, INDEX(addr, 2), number, VALUE(INDEX(addr, 3)),CONCAT(letter, ROWS(cellRef)+number-1)  )) #LASTCELLOFARRAY retuns the last cell address of a dynamic array.
+
