@@ -21,3 +21,8 @@ UNIQUE(SortedValues)
 
 =LAMBDA(cellRef,LET( addr,TEXTSPLIT(CELL("address",cellRef),"$"),letter, INDEX(addr, 2), number, VALUE(INDEX(addr, 3)),CONCAT(letter, ROWS(cellRef)+number-1)  )) #LASTCELLOFARRAY retuns the last cell address of a dynamic array.
 
+
+=LAMBDA(string,LET(         n, LEN(string),         returnArray, SEQUENCE(n, 1, 1, 1),
+     MAP(returnArray, LAMBDA(idx, MID(string,idx,1)))
+) ) # returns an array of char for given string
+
