@@ -24,5 +24,5 @@ UNIQUE(SortedValues)
 
 =LAMBDA(string,LET(         n, LEN(string),         returnArray, SEQUENCE(n, 1, 1, 1),
      MAP(returnArray, LAMBDA(idx, MID(string,idx,1)))
-) ) # returns an array of char for given string
+) ) # returns an array of char for given string it expects a string. if chained with other formula be careful that its not passed an array such as INDEX() as its return type is ARRAY thought it maybe only one element. in such case use ARRAYTOTEXT() formula
 
